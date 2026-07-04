@@ -1,0 +1,16 @@
+# Kiro / editor snapshots
+.snapshots/
+
+# VS Code workspace settings
+.vscode/
+
+# Reference / sample files not part of the final site
+sample.webp
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Node (if ever added)
+node_modules/
