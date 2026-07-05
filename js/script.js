@@ -23,6 +23,7 @@ const formFeedback = document.getElementById('form-feedback');
 
 /* Parallax elements */
 const heroBg       = document.querySelector('.hero-bg');
+const heroParallax = document.querySelector('.hero-left');
 const manifestoBg  = document.querySelector('.manifesto-bg');
 const servicesBg   = document.querySelector('.services-bg');
 
@@ -352,6 +353,157 @@ serviceCards.forEach((card) => {
     card.style.transform = '';
   });
 });
+
+/* ─── Lookbook Filtering ─── */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+if (filterBtns.length > 0 && galleryItems.length > 0) {
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button styling
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const filterValue = btn.dataset.filter;
+
+      galleryItems.forEach(item => {
+        const category = item.dataset.category;
+
+        if (filterValue === 'all' || category === filterValue) {
+          item.classList.remove('hidden');
+          // Short delay to allow layout recalculation before transitioning opacity/scale
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+            item.style.pointerEvents = 'all';
+          }, 20);
+        } else {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.95)';
+          item.style.pointerEvents = 'none';
+          setTimeout(() => {
+            if (item.style.opacity === '0') {
+              item.classList.add('hidden');
+            }
+          }, 400); // matches --duration-mid which is 400ms
+        }
+      });
+    });
+  });
+}
+
+/* ─── Lightbox Details Modal ─── */
+const lightbox = document.getElementById('lightbox-modal');
+const modalImg = document.getElementById('modal-img');
+const modalTitle = document.getElementById('modal-title');
+const modalCollection = document.getElementById('modal-collection-label');
+const modalDesc = document.getElementById('modal-desc');
+const modalFabric = document.getElementById('modal-spec-fabric');
+const modalDetails = document.getElementById('modal-spec-details');
+const modalFit = document.getElementById('modal-spec-fit');
+const modalCraft = document.getElementById('modal-spec-craft');
+const modalClose = document.getElementById('modal-close');
+const modalBackdrop = document.getElementById('modal-backdrop');
+const modalInquireBtn = document.getElementById('modal-inquire-btn');
+
+function openLightbox(item) {
+  if (!lightbox) return;
+
+  // Bind values from data attributes
+  modalImg.src = item.dataset.image;
+  modalImg.alt = item.querySelector('img') ? item.querySelector('img').alt : item.dataset.title;
+  modalTitle.textContent = item.dataset.title;
+  modalCollection.textContent = item.dataset.collection;
+  modalDesc.textContent = item.dataset.desc;
+  
+  modalFabric.textContent = item.dataset.specFabric;
+  modalDetails.textContent = item.dataset.specDetails;
+  modalFit.textContent = item.dataset.specFit;
+  modalCraft.textContent = item.dataset.specCraft;
+
+  // Show modal
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Attach lookbook item click listeners
+if (galleryItems.length > 0) {
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => openLightbox(item));
+    
+    // Accessibility: handle Enter or Space keys for keyboard users
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(item);
+      }
+    });
+  });
+}
+
+// Close events
+if (modalClose) {
+  modalClose.addEventListener('click', closeLightbox);
+}
+if (modalBackdrop) {
+  modalBackdrop.addEventListener('click', closeLightbox);
+}
+
+// Close on escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
+    closeLightbox();
+  }
+});
+
+// Inquiry Form Auto-filler
+if (modalInquireBtn) {
+  modalInquireBtn.addEventListener('click', () => {
+    const garmentTitle = modalTitle.textContent;
+    const serviceSelect = document.getElementById('contact-service');
+    const messageField = document.getElementById('contact-message');
+    const contactSection = document.getElementById('contact');
+
+    // 1. Select the "Garment Construction & Bespoke" service
+    if (serviceSelect) {
+      serviceSelect.value = 'garment-construction';
+    }
+
+    // 2. Pre-fill custom inquiry details
+    if (messageField) {
+      messageField.value = `Hi Fatoba,\n\nI am interested in requesting a bespoke fitting for: "${garmentTitle}" from your Atelier Lookbook. Please let me know your availability for an initial design consultation and fitting schedule.\n\nThank you!`;
+    }
+
+    // 3. Close the modal
+    closeLightbox();
+
+    // 4. Scroll smoothly to contact section
+    if (contactSection) {
+      setTimeout(() => {
+        const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 80;
+        const offsetTop = contactSection.getBoundingClientRect().top + window.scrollY - headerH;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        
+        // Focus the name field to guide the user's next action
+        const nameField = document.getElementById('contact-name');
+        if (nameField) nameField.focus();
+      }, 350);
+    }
+  });
+}
 
 /* ─── Init ───────────────────────────────────────── */
 (function init() {

@@ -81,7 +81,7 @@
       <!-- Desktop Navigation -->
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#manifesto" id="nav-manifesto">About</a>
-        <a href="#gallery"   id="nav-gallery">Gallery</a>
+        <a href="#gallery"   id="nav-gallery">Lookbook</a>
         <a href="#services"  id="nav-services">Expertise</a>
         <a href="#experience" id="nav-experience">Journey</a>
         <a href="#contact"   id="nav-contact" class="nav-cta">Let's Work</a>
@@ -106,7 +106,7 @@
   <!-- Mobile Navigation Drawer -->
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
     <a href="#manifesto">About</a>
-    <a href="#gallery">Gallery</a>
+    <a href="#gallery">Lookbook</a>
     <a href="#services">Expertise</a>
     <a href="#experience">Journey</a>
     <a href="#contact">Let's Work</a>
@@ -311,33 +311,215 @@
     <!-- ════════════════════════════════════════════════
          SECTION 2b — PHOTO GALLERY
     ════════════════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════════
+         SECTION 2b — PHOTO GALLERY (LOOKBOOK)
+    ════════════════════════════════════════════════════ -->
     <section id="gallery" aria-labelledby="gallery-heading">
       <div class="container">
         <div class="gallery-header">
           <div class="label reveal">
-            <span class="material-symbols-outlined" style="font-size:0.9rem">photo_library</span>
-            The Face Behind the Brand
+            <span class="material-symbols-outlined" style="font-size:0.9rem">apparel</span>
+            The Collections
           </div>
           <h2 class="section-title reveal reveal-delay-1" id="gallery-heading">
-            Fatoba Bamidele <em>John</em>
+            Atelier <em>Lookbook</em>
           </h2>
+          <p class="section-subtitle reveal reveal-delay-2" style="margin-top: 1rem; margin-inline: auto; text-align: center;">
+            Explore signature bespoke tailoring, premium traditional wear, and contemporary outerwear pieces.
+          </p>
         </div>
 
-        <div class="gallery-grid reveal reveal-delay-1">
-          <div class="gallery-item gallery-item--featured">
-            <img src="images/fatoba-portrait-1.jpg" alt="Fatoba Bamidele John — fashion designer portrait" loading="lazy" />
+        <!-- Collections Filter -->
+        <div class="gallery-filters reveal reveal-delay-2" role="tablist" aria-label="Filter collections">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Pieces</button>
+          <button class="filter-btn" data-filter="suits" role="tab" aria-selected="false">Bespoke Suiting</button>
+          <button class="filter-btn" data-filter="traditional" role="tab" aria-selected="false">Traditional Attire</button>
+          <button class="filter-btn" data-filter="outerwear" role="tab" aria-selected="false">Outerwear</button>
+        </div>
+
+        <div class="gallery-grid reveal reveal-delay-2">
+          <!-- Item 1: 3-Piece Suit (Featured) -->
+          <div class="gallery-item gallery-item--featured" 
+               data-category="suits"
+               data-title="The Sovereign Three-Piece"
+               data-collection="Royal Sartorial"
+               data-desc="A masterclass in modern tailoring. This double-breasted three-piece suit features sharp peak lapels, a tailored double-breasted vest, and structured shoulders that drape elegantly. Designed for the discerning gentleman seeking ultimate classic sophistication."
+               data-spec-fabric="Super 120s Italian Wool & Cashmere blend (320g)"
+               data-spec-details="Full floating horsehair canvas, hand-padded peak lapels, hand-stitched Milanese buttonholes"
+               data-spec-fit="Bespoke tailored structure with high armholes"
+               data-spec-craft="55 Hours of hand craftsmanship"
+               data-image="images/collection_3piece_suit.png"
+               role="button"
+               tabindex="0"
+               aria-haspopup="dialog"
+               aria-label="View details of The Sovereign Three-Piece Suit">
+            <img src="images/collection_3piece_suit.png" alt="Tailored charcoal grey 3-piece double-breasted suit" loading="lazy" />
+            <div class="gallery-item-overlay">
+              <span class="item-collection">Royal Sartorial</span>
+              <h3 class="item-title">The Sovereign Three-Piece</h3>
+              <span class="item-cta-hint">View Craft Details</span>
+            </div>
           </div>
-          <div class="gallery-item">
-            <img src="images/fatoba-portrait-2.jpg" alt="Fatoba Bamidele John — creative director" loading="lazy" />
+
+          <!-- Item 2: Traditional Attire -->
+          <div class="gallery-item" 
+               data-category="traditional"
+               data-title="The Ivory Monarch Agbada"
+               data-collection="Heritage Gold"
+               data-desc="A royal celebration of culture and contemporary luxury. Handcrafted from heavy-weight polished Italian cotton and premium hand-woven silk Aso-Oke, featuring meticulous gold silk embroidery that radiates elegance."
+               data-spec-fabric="Premium Polished Cotton & Hand-woven Silk Aso-Oke"
+               data-spec-details="Intricate gold silk cord chest embroidery, hand-finished hems"
+               data-spec-fit="Regal flowing traditional silhouette"
+               data-spec-craft="70 Hours of manual embroidery and tailoring"
+               data-image="images/collection_traditional.png"
+               role="button"
+               tabindex="0"
+               aria-haspopup="dialog"
+               aria-label="View details of The Ivory Monarch Agbada">
+            <img src="images/collection_traditional.png" alt="Ivory white African Kaftan/Agbada with gold chest embroidery" loading="lazy" />
+            <div class="gallery-item-overlay">
+              <span class="item-collection">Heritage Gold</span>
+              <h3 class="item-title">The Ivory Monarch</h3>
+              <span class="item-cta-hint">View Craft Details</span>
+            </div>
           </div>
-          <div class="gallery-item">
-            <img src="images/fatoba-portrait-3.jpg" alt="Fatoba Bamidele John — fashion stylist" loading="lazy" />
+
+          <!-- Item 3: DB Suit -->
+          <div class="gallery-item" 
+               data-category="suits"
+               data-title="The Royale Double-Breasted"
+               data-collection="Midnight Luxe"
+               data-desc="Exuding timeless elegance, this six-button royal blue double-breasted suit offers a slim, tailored profile. Structured shoulders and peak lapels are complemented by signature gold crest buttons."
+               data-spec-fabric="Luxury Merino Wool & Silk Blend (280g)"
+               data-spec-details="Gold-plated metallic crest buttons, hand-stitched pick-stitch detailing"
+               data-spec-fit="Modern slim-cut luxury silhouette"
+               data-spec-craft="48 Hours of bespoke tailoring"
+               data-image="images/collection_db_suit.png"
+               role="button"
+               tabindex="0"
+               aria-haspopup="dialog"
+               aria-label="View details of The Royale Double-Breasted Suit">
+            <img src="images/collection_db_suit.png" alt="Navy royal blue double-breasted tailored suit" loading="lazy" />
+            <div class="gallery-item-overlay">
+              <span class="item-collection">Midnight Luxe</span>
+              <h3 class="item-title">The Royale DB</h3>
+              <span class="item-cta-hint">View Craft Details</span>
+            </div>
           </div>
-          <div class="gallery-item">
-            <img src="images/fatoba-portrait-4.jpg" alt="Fatoba Bamidele John — bespoke fashion" loading="lazy" />
+
+          <!-- Item 4: Contemporary Outerwear -->
+          <div class="gallery-item" 
+               data-category="outerwear"
+               data-title="The Nomad Camel Trench"
+               data-collection="Urban Nomad"
+               data-desc="A sophisticated outer layer designed to withstand the cold with class. Made from double-faced virgin wool and cashmere, it features structured shoulders and leather-wrapped buckles."
+               data-spec-fabric="100% Virgin Wool & Cashmere Blend (520g)"
+               data-spec-details="Genuine horn buttons, leather-wrapped buckles, thermal satin lining"
+               data-spec-fit="Tailored modern overcoat drape"
+               data-spec-craft="42 Hours of construction"
+               data-image="images/collection_contemporary.png"
+               role="button"
+               tabindex="0"
+               aria-haspopup="dialog"
+               aria-label="View details of The Nomad Camel Trench">
+            <img src="images/collection_contemporary.png" alt="Tailored camel wool trench overcoat" loading="lazy" />
+            <div class="gallery-item-overlay">
+              <span class="item-collection">Urban Nomad</span>
+              <h3 class="item-title">The Nomad Camel Trench</h3>
+              <span class="item-cta-hint">View Craft Details</span>
+            </div>
           </div>
-          <div class="gallery-item">
-            <img src="images/fatoba-portrait-5.jpg" alt="Fatoba Bamidele John — couture designer" loading="lazy" />
+
+          <!-- Item 5: Emerald Shawl Tuxedo -->
+          <div class="gallery-item" 
+               data-category="suits"
+               data-title="The Emerald Shawl Tuxedo"
+               data-collection="Nocturnal Velvet"
+               data-desc="Designed for prestigious evening galas. This dinner jacket features a lush emerald green velvet fabric that catches the light beautifully, finished with contrasting black silk satin shawl lapels."
+               data-spec-fabric="Premium Cotton Velvet & Italian Silk Satin"
+               data-spec-details="Shawl collar in pure black satin, silk-covered single button closure"
+               data-spec-fit="Tailored evening wear contour"
+               data-spec-craft="50 Hours of hand tailoring"
+               data-image="images/collection_velvet_tuxedo.png"
+               role="button"
+               tabindex="0"
+               aria-haspopup="dialog"
+               aria-label="View details of The Emerald Shawl Tuxedo">
+            <img src="images/collection_velvet_tuxedo.png" alt="Bespoke emerald green velvet dinner jacket tuxedo" loading="lazy" />
+            <div class="gallery-item-overlay">
+              <span class="item-collection">Nocturnal Velvet</span>
+              <h3 class="item-title">The Emerald Shawl</h3>
+              <span class="item-cta-hint">View Craft Details</span>
+            </div>
+          </div>
+
+          <!-- Item 6: Brocade Kaftan -->
+          <div class="gallery-item" 
+               data-category="traditional"
+               data-title="The Onyx Brocade Kaftan"
+               data-collection="Monochrome Heritage"
+               data-desc="A minimalist yet highly detailed traditional kaftan. Cut from rich black silk brocade fabric with subtle floral textures, it features tone-on-tone embroidery running along the placket and cuffs."
+               data-spec-fabric="Silk-Blend Jacquard Brocade"
+               data-spec-details="Tone-on-tone black silk embroidery, hidden snap button placket"
+               data-spec-fit="Structured slim-cut traditional fit"
+               data-spec-craft="38 Hours of hand assembly"
+               data-image="images/collection_brocade_kaftan.png"
+               role="button"
+               tabindex="0"
+               aria-haspopup="dialog"
+               aria-label="View details of The Onyx Brocade Kaftan">
+            <img src="images/collection_brocade_kaftan.png" alt="Rich black silk brocade African Kaftan" loading="lazy" />
+            <div class="gallery-item-overlay">
+              <span class="item-collection">Monochrome Heritage</span>
+              <h3 class="item-title">The Onyx Brocade</h3>
+              <span class="item-cta-hint">View Craft Details</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════
+         SECTION 2c — THE DESIGNER & PHILOSOPHY
+    ════════════════════════════════════════════════════ -->
+    <section id="designer-profile" aria-labelledby="designer-heading">
+      <div class="container">
+        <div class="section-inner designer-inner">
+          <div class="designer-grid reveal">
+            <!-- Left: Portrait -->
+            <div class="designer-portrait-container">
+              <div class="designer-img-wrapper">
+                <img src="images/fatoba-portrait-2.jpg" alt="Fatoba Bamidele John in his atelier" loading="lazy" />
+              </div>
+              <div class="designer-badge">
+                <span class="logo-name">FATOBA <span>BJ</span></span>
+              </div>
+            </div>
+            <!-- Right: Biography & Philosophy -->
+            <div class="designer-content">
+              <div class="label">The Designer</div>
+              <h2 class="designer-title" id="designer-heading">Fatoba Bamidele <em>John</em></h2>
+              <p class="designer-bio-lead">
+                Bridging contemporary European tailoring with rich West African heritage.
+              </p>
+              <div class="designer-bio-body">
+                <p>
+                  As the Creative Director of BammyJohn Stitches, Fatoba Bamidele John has spent over a decade shaping a unique sartorial voice. Operating between Leicester City, UK, and Lagos, Nigeria, he brings a dual perspective to luxury fashion—understanding both the strict geometry of British tailoring and the vibrant, flowing storytelling of traditional African design.
+                </p>
+                <p>
+                  Every garment that leaves the atelier is treated as a piece of sculpture. From selecting the finest wools and hand-woven silk Aso-Oke fabrics, to executing 50+ hours of hand-canvasing and fine embroidery, Bamidele John maintains a hands-on commitment to absolute precision and perfect fit.
+                </p>
+                <p class="designer-quote">
+                  "A suit should not merely fit the body; it should frame the character. We don't build clothing; we construct armor for confidence."
+                </p>
+              </div>
+              <div class="designer-signatures">
+                <a href="#contact" class="btn btn-outline" id="designer-consult-btn">
+                  <span class="material-symbols-outlined" style="font-size:1rem">calendar_month</span>
+                  Book a Consultation
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -997,6 +1179,57 @@
 
     </div>
   </footer>
+
+  <!-- ─── Lightbox Modal ──────────────────────────── -->
+  <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-title">
+    <div class="lightbox-backdrop" id="modal-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="modal-close" aria-label="Close modal">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="lightbox-body">
+        <!-- Left: Image -->
+        <div class="lightbox-image-container">
+          <img id="modal-img" src="" alt="Garment details" />
+        </div>
+        <!-- Right: Details -->
+        <div class="lightbox-details">
+          <span class="label" id="modal-collection-label">Collection</span>
+          <h3 id="modal-title">Garment Title</h3>
+          <p id="modal-desc" class="lightbox-desc">Detailed garment description.</p>
+          
+          <div class="lightbox-specs">
+            <h4>Specifications</h4>
+            <table class="specs-table">
+              <tbody>
+                <tr>
+                  <td>Fabric</td>
+                  <td id="modal-spec-fabric">Super 120s Wool</td>
+                </tr>
+                <tr>
+                  <td>Details</td>
+                  <td id="modal-spec-details">Hand-stitched peak lapels</td>
+                </tr>
+                <tr>
+                  <td>Fit / Silhouette</td>
+                  <td id="modal-spec-fit">Bespoke Fit</td>
+                </tr>
+                <tr>
+                  <td>Craftsmanship</td>
+                  <td id="modal-spec-craft">45 Hours</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <button id="modal-inquire-btn" class="btn btn-primary">
+            <span class="material-symbols-outlined">checkroom</span>
+            Request Bespoke Fitting
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ─── Back to Top ─────────────────────────────── -->
   <button
