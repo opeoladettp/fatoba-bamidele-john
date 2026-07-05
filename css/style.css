@@ -1199,6 +1199,34 @@ input, textarea, select { font: inherit; }
   margin-bottom: var(--sp-4);
 }
 
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--clr-text-muted);
+  letter-spacing: 0.04em;
+  transition: all var(--duration-fast);
+}
+
+.skill-pill:hover {
+  border-color: var(--clr-gold);
+  color: var(--clr-gold);
+  background: var(--clr-gold-faint);
+  transform: translateY(-2px);
+}
+
 /* Milestones numbers — kept for any legacy references */
 .milestones-strip {
   display: grid;
