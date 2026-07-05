@@ -2083,6 +2083,13 @@ input, textarea, select { font: inherit; }
   }
 
   /* ── Journey / Experience Mobile Fix ── */
+
+  /* Remove overflow:hidden from the section so nothing gets clipped */
+  #experience {
+    overflow: visible;
+    overflow-x: clip; /* still prevent horizontal scroll bleed */
+  }
+
   .experience-inner {
     grid-template-columns: 1fr;
     gap: var(--sp-10);
@@ -2095,26 +2102,31 @@ input, textarea, select { font: inherit; }
 
   .experience-right {
     max-height: none;
-    overflow-y: visible;
-    overflow-x: visible;
+    overflow: visible;
     padding-top: var(--sp-6);
     border-top: 1px solid var(--clr-border);
   }
 
-  /* Timeline dots stay aligned at smaller indent */
+  /* Give timeline enough left padding so the dot (left:-2.1rem) sits
+     inside the container and doesn't get clipped */
   .timeline {
-    padding-left: 1.75rem;
+    padding-left: 2.5rem;
+    overflow: visible;
   }
 
   .timeline-item::before {
-    left: -1.65rem;
+    left: -2rem;
+  }
+
+  /* Credentials below the timeline */
+  .credentials-grid {
+    grid-template-columns: 1fr;
+    overflow: visible;
   }
 
   .milestones-strip {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .credentials-grid { grid-template-columns: 1fr; }
 
   .services-grid { grid-template-columns: 1fr; }
   .contact-cards { flex-direction: column; }
