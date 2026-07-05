@@ -2080,6 +2080,11 @@ input, textarea, select { font: inherit; }
   /* ── Journey / Experience Mobile Fix ── */
   .journey-header { max-width: 100%; }
 
+  /* Shrink heading so it sits on 2 lines instead of 3 */
+  #experience .section-title {
+    font-size: clamp(1.6rem, 6vw, 2.25rem);
+  }
+
   .jt-item {
     grid-template-columns: 1fr;
     gap: var(--sp-2);
