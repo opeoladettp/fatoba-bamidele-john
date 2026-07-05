@@ -1027,135 +1027,121 @@ input, textarea, select { font: inherit; }
   color: var(--clr-gold-light);
 }
 
-/* ─── EXPERIENCE / MILESTONES ────────────────────── */
+/* ─── EXPERIENCE / JOURNEY ───────────────────────── */
 #experience {
   position: relative;
   background-color: var(--clr-bg-2);
-  overflow: hidden;
 }
 
-/* Equal columns — left sticky, right scrollable */
-.experience-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-8);
-  align-items: start;
-}
-
-.experience-left {
-  position: sticky;
-  top: calc(var(--header-h) + 2rem);
+/* ── Section header ── */
+.journey-header {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-6);
+  gap: var(--sp-4);
+  max-width: 700px;
+  margin-bottom: var(--sp-12);
 }
 
-/* Right column: scrollable, same height as the sticky left column */
-.experience-right {
-  /* Match the sticky viewport-relative height of the left column */
-  max-height: calc(100vh - var(--header-h) - 4rem);
-  overflow-y: auto;
-  overflow-x: hidden;
-  /* Hide the scrollbar visually while keeping scroll functionality */
-  scrollbar-width: none;       /* Firefox */
-  -ms-overflow-style: none;    /* IE/Edge */
+/* ── Stats row ── */
+.journey-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
 }
 
-.experience-right::-webkit-scrollbar {
-  display: none;               /* Chrome/Safari/Opera */
-}
-
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: 2.25rem; /* 36px — space for line + dot + gap */
-}
-
-/* Vertical connector line — centered at 6px from left */
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 18px;
-  bottom: 8px;
-  width: 2px;
-  border-radius: 2px;
-  background: linear-gradient(
-    to bottom,
-    var(--clr-gold) 0%,
-    rgba(201,168,76,0.35) 60%,
-    rgba(201,168,76,0.06) 100%
-  );
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: var(--sp-8);
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-/* Dot — center must align with line center (6px from .timeline left edge)
-   .timeline-item starts at 36px from .timeline edge.
-   We need dot center at 6px → left = 6px - 36px - 7px(half dot) = -37px */
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -2.1rem; /* ≈ -34px: lines up dot center with the 2px line at left:5px */
-  top: 8px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 2px solid var(--clr-gold);
-  background: var(--clr-bg-2);
-  z-index: 1;
-  transition: background var(--duration-mid) var(--ease-out),
-              box-shadow var(--duration-mid) var(--ease-out);
-}
-
-.timeline-item:hover::before {
-  background: var(--clr-gold);
-  box-shadow: 0 0 0 4px rgba(201,168,76,0.15), 0 0 14px rgba(201,168,76,0.5);
-}
-
-.timeline-card {
+.journey-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   background: var(--clr-surface);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-md);
-  padding: var(--sp-5) var(--sp-6);
+  padding: var(--sp-4) var(--sp-6);
+  min-width: 110px;
   transition: border-color var(--duration-mid) var(--ease-out),
-              background var(--duration-mid) var(--ease-out),
-              box-shadow var(--duration-mid) var(--ease-out),
               transform var(--duration-mid) var(--ease-out);
 }
 
-.timeline-item:hover .timeline-card {
-  border-color: rgba(201,168,76,0.35);
-  background: var(--clr-surface-2);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-  transform: translateX(6px);
+.journey-stat:hover {
+  border-color: var(--clr-gold);
+  transform: translateY(-3px);
 }
 
-.timeline-period {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--fs-xs);
+.journey-stat-num {
   font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-extra);
+  color: var(--clr-gold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.journey-stat-label {
+  font-size: var(--fs-xs);
+  color: var(--clr-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-display);
+}
+
+/* ── Timeline ── */
+.journey-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-12);
+}
+
+.jt-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+.jt-period {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-semi);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--clr-gold);
-  background: var(--clr-gold-faint);
-  border: 1px solid rgba(201,168,76,0.18);
-  padding: 3px 12px;
-  border-radius: 100px;
-  margin-bottom: var(--sp-3);
+  padding-top: var(--sp-5); /* align with card top padding */
+  text-align: right;
+  flex-shrink: 0;
 }
 
-.timeline-role {
+.jt-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-left: 3px solid var(--clr-gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  transition: background var(--duration-mid) var(--ease-out),
+              border-color var(--duration-mid) var(--ease-out),
+              box-shadow var(--duration-mid) var(--ease-out);
+}
+
+.jt-card:hover {
+  background: var(--clr-surface-2);
+  border-color: var(--clr-gold);
+  border-left-color: var(--clr-gold-light);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+.jt-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.jt-role {
   font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: var(--fw-bold);
@@ -1163,30 +1149,57 @@ input, textarea, select { font: inherit; }
   margin-bottom: var(--sp-1);
 }
 
-.timeline-company {
+.jt-company {
   font-size: var(--fs-sm);
   color: var(--clr-gold-light);
   font-weight: var(--fw-medium);
-  margin-bottom: var(--sp-3);
   opacity: 0.85;
 }
 
-.timeline-desc {
+.jt-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  border-radius: 100px;
+  font-size: var(--fs-xs);
+  font-family: var(--font-display);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.08em;
+  background: rgba(74,222,128,0.1);
+  border: 1px solid rgba(74,222,128,0.3);
+  color: #4ade80;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.jt-desc {
   font-size: var(--fs-sm);
   color: var(--clr-text-muted);
   line-height: 1.8;
 }
 
-.timeline-skills {
+.jt-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
-  margin-top: var(--sp-4);
   padding-top: var(--sp-3);
   border-top: 1px solid var(--clr-border);
 }
 
-/* Milestones numbers */
+/* ── Skills row ── */
+.journey-skills {
+  margin-bottom: var(--sp-12);
+}
+
+.journey-skills-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semi);
+  color: var(--clr-text);
+  margin-bottom: var(--sp-4);
+}
+
+/* Milestones numbers — kept for any legacy references */
 .milestones-strip {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1228,57 +1241,11 @@ input, textarea, select { font: inherit; }
   font-family: var(--font-display);
 }
 
-/* Skills grid */
-.skills-block {
-  margin-top: var(--sp-8);
-}
-
-.skills-block h3 {
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semi);
-  color: var(--clr-text);
-  margin-bottom: var(--sp-4);
-}
-
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-2);
-}
-
-.skill-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 100px;
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border-2);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
-  color: var(--clr-text-muted);
-  letter-spacing: 0.04em;
-  transition: all var(--duration-fast);
-}
-
-.skill-pill:hover {
-  border-color: var(--clr-gold);
-  color: var(--clr-gold);
-  background: var(--clr-gold-faint);
-  transform: translateY(-2px);
-}
-
-.skill-pill .material-symbols-outlined {
-  font-size: 0.9rem;
-}
-
 /* Credentials Grid */
 .credentials-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-6);
-  margin-top: var(--sp-12);
   width: 100%;
 }
 
@@ -1986,13 +1953,13 @@ input, textarea, select { font: inherit; }
   }
   .gallery-item--featured { grid-column: 1 / 3; aspect-ratio: 16/9; }
 
-  /* Experience keeps equal 1fr 1fr above 768px */
+  /* Experience — credentials stack to 1 col at tablet */
+  .credentials-grid { grid-template-columns: 1fr; gap: var(--sp-6); }
 
   .contact-inner { grid-template-columns: 1fr; }
   .contact-left { position: static; }
   .contact-cards { flex-direction: column; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
-  .credentials-grid { grid-template-columns: 1fr; gap: var(--sp-6); }
 }
 
 @media (max-width: 768px) {
@@ -2083,45 +2050,20 @@ input, textarea, select { font: inherit; }
   }
 
   /* ── Journey / Experience Mobile Fix ── */
+  .journey-header { max-width: 100%; }
 
-  /* Remove overflow:hidden from the section so nothing gets clipped */
-  #experience {
-    overflow: visible;
-    overflow-x: clip; /* still prevent horizontal scroll bleed */
-  }
-
-  .experience-inner {
+  .jt-item {
     grid-template-columns: 1fr;
-    gap: var(--sp-10);
+    gap: var(--sp-2);
   }
 
-  .experience-left {
-    position: static;
-    top: unset;
+  .jt-period {
+    text-align: left;
+    padding-top: 0;
   }
 
-  .experience-right {
-    max-height: none;
-    overflow: visible;
-    padding-top: var(--sp-6);
-    border-top: 1px solid var(--clr-border);
-  }
-
-  /* Give timeline enough left padding so the dot (left:-2.1rem) sits
-     inside the container and doesn't get clipped */
-  .timeline {
-    padding-left: 2.5rem;
-    overflow: visible;
-  }
-
-  .timeline-item::before {
-    left: -2rem;
-  }
-
-  /* Credentials below the timeline */
   .credentials-grid {
     grid-template-columns: 1fr;
-    overflow: visible;
   }
 
   .milestones-strip {
