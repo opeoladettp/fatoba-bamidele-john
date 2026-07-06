@@ -222,7 +222,7 @@ if (backToTop) {
 
 /* ─── Contact Form — Formsend Integration ─────────── */
 const FORMSEND_ENDPOINT = 'https://api.formsend.ezeroandone.io/submit';
-const FORMSEND_API_KEY  = 'YOUR_API_KEY'; // ← replace with your key from the dashboard
+const FORMSEND_API_KEY  = '4cca37336797171a736b4b19f7e1bb4326227169f2bca26570b3ffd99f8b3303';
 
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
