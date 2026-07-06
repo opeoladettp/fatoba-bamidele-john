@@ -220,29 +220,71 @@ if (backToTop) {
   });
 }
 
-/* ─── Contact Form ───────────────────────────────── */
+/* ─── Contact Form — Formsend Integration ─────────── */
+const FORMSEND_ENDPOINT = 'https://api.formsend.ezeroandone.io/submit';
+const FORMSEND_API_KEY  = 'YOUR_API_KEY'; // ← replace with your key from the dashboard
+
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const submitBtn = contactForm.querySelector('[type="submit"]');
-    const originalText = submitBtn.innerHTML;
+    const submitBtn   = contactForm.querySelector('[type="submit"]');
+    const originalHTML = submitBtn.innerHTML;
+
+    // Pull field values
+    const name    = contactForm.querySelector('[name="name"]').value.trim();
+    const email   = contactForm.querySelector('[name="email"]').value.trim();
+    const message = contactForm.querySelector('[name="message"]').value.trim();
+    const company = contactForm.querySelector('[name="company"]').value.trim();
+    const service = contactForm.querySelector('[name="service"]').value;
+    const budget  = contactForm.querySelector('[name="budget"]').value;
+
+    // Build a meaningful subject line from the service field
+    const serviceLabel = service
+      ? contactForm.querySelector(`[name="service"] option[value="${service}"]`)?.textContent ?? service
+      : 'General Enquiry';
+    const subject = `New Enquiry — ${serviceLabel} | ${name}`;
 
     // Loading state
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<span class="material-symbols-outlined" style="animation:spin 1s linear infinite;display:inline-block">progress_activity</span> Sending…`;
+    hideFormFeedback();
 
-    // Simulate async form submission (replace with actual endpoint)
-    await new Promise((resolve) => setTimeout(resolve, 1600));
+    try {
+      const res = await fetch(FORMSEND_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          api_key: FORMSEND_API_KEY,
+          name,
+          email,
+          subject,
+          message,
+          // Extra fields forwarded as additional rows in the email
+          ...(company && { 'Company / Brand': company }),
+          ...(service && { 'Service Requested': serviceLabel }),
+          ...(budget  && { 'Project Budget': budget }),
+        }),
+      });
 
-    // Success feedback
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalText;
-    showFormFeedback('success', 'check_circle', 'Message sent! I\'ll be in touch within 24 hours.');
-    contactForm.reset();
+      const data = await res.json();
 
-    // Hide feedback after 6 seconds
-    setTimeout(() => hideFormFeedback(), 6000);
+      if (res.ok && data.success) {
+        showFormFeedback('success', 'check_circle', "Message sent! I'll be in touch within 24 hours.");
+        contactForm.reset();
+        setTimeout(() => hideFormFeedback(), 8000);
+      } else {
+        // Surface the API's human-readable error message
+        const errMsg = data.message || 'Something went wrong. Please try again.';
+        showFormFeedback('error', 'error', errMsg);
+      }
+    } catch (err) {
+      // Network failure / no connection
+      showFormFeedback('error', 'wifi_off', 'Could not connect. Please check your internet and try again.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalHTML;
+    }
   });
 }
 
